@@ -31,5 +31,21 @@ module Types
     def post_delete(id:)
       Post.where(id: id).delete_all
     end
+
+    field :comment_create, Types::CommentType, mutation: Mutations::CommentCreate
+
+    field :comment_update, Boolean, null: false, description: "Updates an comment." do
+      argument :comment, Types::CommentInputType, required: true
+    end
+    def comment_update(comment:)
+      Comment.where(id: comment[:id]).first&.update(comment.to_h) || false
+    end
+
+    field :comment_delete, Boolean, null: false, description: "Deletes an comment." do
+      argument :id, ID, required: true
+    end
+    def comment_delete(id:)
+      Comment.where(id: id).delete_all
+    end
   end
 end
