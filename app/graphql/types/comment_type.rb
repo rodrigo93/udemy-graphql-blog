@@ -1,8 +1,8 @@
-class Types::PostType < Types::BaseObject
-  description "A Post instance"
+class Types::CommentType < Types::BaseObject
+  description "A Comment instance"
 
   field :body, String, null: false
-  field :user_id, ID, null: false
+  field :post_id, ID, null: false
 
   field :created_at, GraphQL::Types::ISO8601DateTime, null: false
   field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
